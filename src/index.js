@@ -23,19 +23,19 @@ function customGimme(customOptions) {
         return (next) => (action) => {
             let options = {
                 before:
-                    customOptions.before === undefined
+                    customOptions.before == undefined || null
                         ? true
                         : customOptions.before,
                 action:
-                    customOptions.action === undefined
+                    customOptions.action == undefined || null
                         ? true
                         : customOptions.action,
                 after:
-                    customOptions.after === undefined
+                    customOptions.after == undefined || null
                         ? true
                         : customOptions.after,
                 fullColors:
-                    customOptions.fullColors === undefined
+                    customOptions.fullColors == undefined || null
                         ? true
                         : customOptions.fullColors
             }
@@ -50,7 +50,6 @@ function customGimme(customOptions) {
                       cyan: '\x1b[36m%s\x1b[0m',
                       green: '\x1b[32m%s\x1b[0m'
                   }
-            if (!options.fullAction) action = action.type
             if (options.before) {
                 console.log(colors.magenta, 'Before Dispatch: ', getState())
             }
