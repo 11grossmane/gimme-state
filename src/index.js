@@ -20,39 +20,41 @@ function gimme(
     }
 }
 
-function customGimme(options) {
+function customGimme(customOptions) {
     return function logger({ getState }) {
         return (next) => (action) => {
-            options = {
-                before: options.before || true,
-                action: options.action || true,
-                after: options.after || true,
-                fullColors: options.fullColors || true,
-                fullAction: options.fullAction || true
+            let options = {
+                before: customOptions.before || true,
+                action: customOptions.action || true,
+                after: customOptions.after || true,
+                fullColors: customOptions.fullColors || true,
+                fullAction: customOptions.fullAction || true
             }
-            let append = options.fullColors ? '' : '%s\x1b[0m'
+            let colors = options.fullColors
+                ? {
+                      magenta: '\x1b[35m',
+                      cyan: '\x1b[36m',
+                      green: '\x1b[32m'
+                  }
+                : {
+                      magenta: '\x1b[35m%s\x1b[0m',
+                      cyan: '\x1b[36m%s\x1b[0m',
+                      green: '\x1b[32m%s\x1b[0m'
+                  }
             if (!options.fullAction) action = action.type
             if (options.before) {
-                console.log(
-                    `\x1b[35m${append}`,
-                    'Before Dispatch: ',
-                    getState()
-                )
+                console.log(colors.magenta, 'Before Dispatch: ', getState())
             }
             if (options.action) {
                 if (options.action instanceof Function) {
-                    console.log(
-                        `\x1b[36m${append}`,
-                        'Action is a THUNK: ',
-                        action
-                    )
-                } else console.log(`\x1b[36m${append}`, 'Action: ', action)
+                    console.log(colors.cyan, 'Action is a THUNK: ', action)
+                } else console.log(colors.cyan, 'Action: ', action)
             }
 
             // Call the next dispatch method in the middleware chain.
             const returnValue = next(action)
             if (options.after) {
-                console.log(`\x1b[32m${append}`, 'After Dispatch: ', getState())
+                console.log(colors.green, 'After Dispatch: ', getState())
             }
             // This will likely be the action itself, unless
             // a middleware further in chain changed it.
