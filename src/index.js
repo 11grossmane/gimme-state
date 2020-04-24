@@ -52,11 +52,7 @@ function customGimme(options) {
             // Call the next dispatch method in the middleware chain.
             const returnValue = next(action)
             if (options.after) {
-                console.log(
-                    `\x1b[32m%s\x1b[0m${append}`,
-                    'After Dispatch: ',
-                    getState()
-                )
+                console.log(`\x1b[32m${append}`, 'After Dispatch: ', getState())
             }
             // This will likely be the action itself, unless
             // a middleware further in chain changed it.
