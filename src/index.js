@@ -39,11 +39,7 @@ function customGimme(customOptions) {
                 fullColors:
                     customOptions.fullColors === undefined
                         ? true
-                        : customOptions.fullColors,
-                fullAction:
-                    customOptions.fullAction === undefined
-                        ? true
-                        : customOptions.fullAction
+                        : customOptions.fullColors
             }
             let colors = options.fullColors
                 ? {

@@ -3,7 +3,6 @@ interface Options {
     action?: boolean
     after?: boolean
     fullColors?: boolean
-    fullAction?: boolean
 }
 
 export function gimme(): any
