@@ -1,9 +1,9 @@
 interface Options {
-    before: boolean
-    action: boolean
-    after: boolean
-    fullColors: boolean
-    fullAction: boolean
+    before?: boolean
+    action?: boolean
+    after?: boolean
+    fullColors?: boolean
+    fullAction?: boolean
 }
 
 export function gimme(): any

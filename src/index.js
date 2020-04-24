@@ -20,17 +20,16 @@ function gimme(
     }
 }
 
-function customGimme(
-    options = {
-        before: true,
-        action: true,
-        after: true,
-        fullColors: true,
-        fullAction: true
-    }
-) {
+function customGimme(options) {
     return function logger({ getState }) {
         return (next) => (action) => {
+            options = {
+                before: options.before || true,
+                action: options.action || true,
+                after: options.after || true,
+                fullColors: options.fullColors || true,
+                fullAction: options.fullAction || true
+            }
             let append = options.fullColors ? '' : '%s\x1b[0m'
             if (!options.fullAction) action = action.type
             if (options.before) {

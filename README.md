@@ -19,10 +19,11 @@ const store = createStore(
 
 ## Options
 
-- if you use customGimme, make sure to specify before, action, and after
 - `before`: refers to the previous state
 - `action`: refers to the action you are dispatching
 - `after`: refers to the state post dispatch
+- `fullColors`: set to false if you are using remote debugger and want color, keep true if you are looking at the logs in your terminal
+- `fullAction`: set to false if you only want to see the action type
 
 
 ```javascript
@@ -31,7 +32,7 @@ import {customGimme} from 'gimme-state'
 
 const store = createStore(
   reducer,
-  applyMiddleware(customGimme({before:true,action:false,after:true}))
+  applyMiddleware(customGimme({action:false,fullColors:false}))
 )
 ```
 
