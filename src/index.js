@@ -24,11 +24,26 @@ function customGimme(customOptions) {
     return function logger({ getState }) {
         return (next) => (action) => {
             let options = {
-                before: customOptions.before || true,
-                action: customOptions.action || true,
-                after: customOptions.after || true,
-                fullColors: customOptions.fullColors || true,
-                fullAction: customOptions.fullAction || true
+                before:
+                    customOptions.before === undefined
+                        ? true
+                        : customOptions.before,
+                action:
+                    customOptions.action === undefined
+                        ? true
+                        : customOptions.action,
+                after:
+                    customOptions.after === undefined
+                        ? true
+                        : customOptions.after,
+                fullColors:
+                    customOptions.fullColors === undefined
+                        ? true
+                        : customOptions.fullColors,
+                fullAction:
+                    customOptions.fullAction === undefined
+                        ? true
+                        : customOptions.fullAction
             }
             let colors = options.fullColors
                 ? {
