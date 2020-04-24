@@ -1,4 +1,4 @@
-function logger({ getState },options={before:true,action:true,after:true}) {
+function gimme({ getState },options={before:true,action:true,after:true}) {
     return next => action => {
         if (options.before){
             console.log('\x1b[35m%s\x1b[0m', 'BeforeDispatch: ',getState())
@@ -15,11 +15,11 @@ function logger({ getState },options={before:true,action:true,after:true}) {
     }
 }
 
-export function customGimme(options = { before: true, action: true, after: true }) {
+function customGimme(options = { before: true, action: true, after: true }) {
     return function logger({ getState }) {
         return (next) => (action) => {
             if (options.before) {
-                console.log('\x1b[35m%s\x1b[0m', 'BeforeDispatch: ', getState());
+                console.log('\x1b[35m%s\x1b[0m', 'Before Dispatch: ', getState());
             }
             if (options.action) {
                 console.log('\x1b[36m%s\x1b[0m', 'Action: ', action);
@@ -37,5 +37,4 @@ export function customGimme(options = { before: true, action: true, after: true 
     };
 }
 
-
-export default logger
+module.exports={gimme,customGimme}

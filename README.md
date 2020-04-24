@@ -9,7 +9,7 @@
 ## Usage
 ```javascript
 import { applyMiddleware, createStore } from 'redux';
-import gimme from 'gimme-state'
+import {gimme} from 'gimme-state'
 
 const store = createStore(
   reducer,
