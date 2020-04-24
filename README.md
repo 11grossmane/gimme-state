@@ -1,7 +1,7 @@
 # gimme-state for Redux
 - super simple colored redux logger for native and web
 
-![](https://github.com/11grossmane/gimme-state/blob/master/gimme.png)
+![gimme-state-screenshot](https://github.com/11grossmane/gimme-state/blob/master/gimme.png?raw=true)
 
 ## Install
 `npm i gimme-state`
