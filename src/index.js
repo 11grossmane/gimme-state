@@ -7,9 +7,7 @@ function gimme(
             console.log('\x1b[35m', 'Before Dispatch: ', getState())
         }
         if (options.action) {
-            if (options.action instanceof Function) {
-                console.log(`\x1b[36m`, 'Action is a THUNK: ', action)
-            } else console.log('\x1b[36m', 'Action: ', action)
+            console.log('\x1b[36m', 'Action: ', action)
         }
 
         const returnValue = next(action)
@@ -56,10 +54,9 @@ function customGimme(customOptions) {
             if (options.before) {
                 console.log(colors.magenta, 'Before Dispatch: ', getState())
             }
+
             if (options.action) {
-                if (options.action instanceof Function) {
-                    console.log(colors.cyan, 'Action is a THUNK: ', action)
-                } else console.log(colors.cyan, 'Action: ', action)
+                console.log(colors.cyan, 'Action: ', action)
             }
 
             // Call the next dispatch method in the middleware chain.
