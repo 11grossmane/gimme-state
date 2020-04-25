@@ -6,7 +6,7 @@
 ## Install
 `npm i gimme-state`
 
-## Usage
+## Basic Usage
 ```javascript
 import { applyMiddleware, createStore } from 'redux';
 import {gimme} from 'gimme-state'
@@ -17,7 +17,19 @@ const store = createStore(
 )
 ```
 
-## Options
+## To Just Log What Changed: 
+```javascript
+import { applyMiddleware, createStore } from 'redux';
+import {gimmeDiff} from 'gimme-state'
+
+const store = createStore(
+  reducer,
+  applyMiddleware(gimmeDiff)
+)
+```
+
+
+## Custom Logger
 
 - `before`: refers to the previous state
 - `action`: refers to the action you are dispatching
