@@ -11,7 +11,8 @@
         "test": "ts-node ./ui_test/redux_test.ts",
         "build": "tsc",
         "clean": "rm -rf ./lib",
-        "build-pub": "npm run clean && npm install && npm run build && npm publish"
+        "cleanbuild": "npm run clean && npm run build",
+        "pub": "npm run clean && npm install && npm run build && npm publish"
     },
     "keywords": [],
     "author": "11grossmane",
@@ -19,7 +20,8 @@
     "dependencies": {
         "@types/redux": "^3.6.0",
         "diff": "^4.0.2",
-        "redux": "^4.0.5"
+        "redux": "^4.0.5",
+        "util": "^0.12.2"
     },
     "devDependencies": {
         "@types/diff": "^4.0.2",

@@ -101,18 +101,19 @@ export function gimmeDiff({ getState }: any): MiddlewareReturn {
             depth: null
         })
         const changed = diff.diffLines(beforeState, afterState)
-        process.stdout.write(colors.cyan + 'Difference: ' + colors.white)
         changed.forEach(function (part) {
-            // green for additions, red for deletions
-            // grey for common parts
-            var color = part.added
-                ? colors.green
-                : part.removed
-                ? colors.red
-                : colors.white
-            process.stdout.write(color + part.value)
+            let label: string
+            let color: string
+            if (part.added) {
+                label = colors.cyan + 'Before: '
+                color = colors.green
+                console.log(label + color + part.value + colors.white)
+            } else if (part.removed) {
+                label = colors.cyan + 'After: '
+                color = colors.red
+                console.log(label + color + part.value + colors.white)
+            }
         })
-        console.log()
         return returnValue
     }
 }
