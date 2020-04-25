@@ -1,19 +1,27 @@
 {
     "name": "gimme-state",
-    "version": "1.0.21",
+    "version": "1.0.22",
     "description": "super simple colored redux logger for native and web",
     "repository": {
         "type": "git",
         "url": "https://github.com/11grossmane/gimme-state.git"
     },
-    "main": "src/index.js",
+    "main": "./lib/index.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "build": "npm i -g",
-        "build-pub": "rm ./package-lock.json && npm install && npm publish"
+        "test": "ts-node ./ui_test/redux_test.ts",
+        "build": "tsc",
+        "clean": "rm -rf ./lib",
+        "build-pub": "npm run clean && npm install && npm run build && npm publish"
     },
     "keywords": [],
     "author": "11grossmane",
     "license": "ISC",
-    "dependencies": {}
+    "dependencies": {
+        "ts-node": "^8.9.0",
+        "typescript": "^3.8.3"
+    },
+    "devDependencies": {
+        "@types/node": "^13.13.2",
+        "redux": "^4.0.5"
+    }
 }

@@ -1,8 +1,8 @@
-function gimme(
-    { getState },
+export function gimme(
+    { getState }: any,
     options = { before: true, action: true, after: true }
 ) {
-    return (next) => (action) => {
+    return (next: any) => (action: any) => {
         if (options.before) {
             console.log('\x1b[35m', 'Before Dispatch: ', getState())
         }
@@ -18,9 +18,18 @@ function gimme(
     }
 }
 
-function customGimme(customOptions) {
-    return function logger({ getState }) {
-        return (next) => (action) => {
+export interface GimmeOptions {
+    before?: boolean
+    action?: boolean
+    after?: boolean
+    fullColors?: boolean
+}
+
+export function customGimme(
+    customOptions: GimmeOptions = {} as GimmeOptions
+): any {
+    return function logger({ getState }: any) {
+        return (next: any) => (action: any) => {
             let options = {
                 before:
                     customOptions.before == undefined || null
@@ -69,5 +78,3 @@ function customGimme(customOptions) {
         }
     }
 }
-
-module.exports = { gimme, customGimme }
