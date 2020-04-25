@@ -19,35 +19,35 @@ export function gimme(
 }
 
 export interface GimmeOptions {
+    [index: string]: boolean | undefined
     before?: boolean
     action?: boolean
     after?: boolean
     fullColors?: boolean
 }
 
+const parseOptions = (options: GimmeOptions): GimmeOptions => {
+    let resultOptions: GimmeOptions = {
+        before: true,
+        action: true,
+        after: true,
+        fullColors: true
+    }
+    for (let key in options) {
+        if (resultOptions[key]) {
+            resultOptions[key] = options[key]
+        }
+    }
+    return resultOptions
+}
+
 export function customGimme(
     customOptions: GimmeOptions = {} as GimmeOptions
 ): any {
+    console.log('gimme options are ', customOptions)
     return function logger({ getState }: any) {
         return (next: any) => (action: any) => {
-            let options = {
-                before:
-                    customOptions.before == undefined || null
-                        ? true
-                        : customOptions.before,
-                action:
-                    customOptions.action == undefined || null
-                        ? true
-                        : customOptions.action,
-                after:
-                    customOptions.after == undefined || null
-                        ? true
-                        : customOptions.after,
-                fullColors:
-                    customOptions.fullColors == undefined || null
-                        ? true
-                        : customOptions.fullColors
-            }
+            let options = parseOptions(customOptions)
             let colors = options.fullColors
                 ? {
                       magenta: '\x1b[35m',
