@@ -14,9 +14,9 @@ const colors = {
 export function gimme({ getState }: any): MiddlewareReturn {
     return (next: any) => (action: any) => {
         let labels = {
-            beforeDispatch: colors.magenta + 'Before Dispatch: ',
-            action: colors.cyan + 'Action: ',
-            afterDispatch: colors.green + 'After Dispatch: '
+            beforeDispatch: colors.magenta + 'Before Dispatch: ' + colors.white,
+            action: colors.cyan + 'Action: ' + colors.white,
+            afterDispatch: colors.green + 'After Dispatch: ' + colors.white
         }
         console.log(labels.beforeDispatch, getState())
         console.log(labels.action, action)
