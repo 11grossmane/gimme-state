@@ -105,11 +105,11 @@ export function gimmeDiff({ getState }: any): MiddlewareReturn {
             let label: string
             let color: string
             if (part.added) {
-                label = colors.cyan + 'Before: '
+                label = colors.cyan + 'After: '
                 color = colors.green
                 console.log(label + color + part.value + colors.white)
             } else if (part.removed) {
-                label = colors.cyan + 'After: '
+                label = colors.cyan + 'Before: '
                 color = colors.red
                 console.log(label + color + part.value + colors.white)
             }

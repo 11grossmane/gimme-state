@@ -1,6 +1,6 @@
 {
     "name": "gimme-state",
-    "version": "1.0.22",
+    "version": "1.0.24",
     "description": "super simple colored redux logger for native and web",
     "repository": {
         "type": "git",
