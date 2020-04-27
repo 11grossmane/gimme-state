@@ -113,7 +113,7 @@ export function gimmeDiff({ getState }: any): MiddlewareReturn {
                 constructedDiff += colors.white + part.value + colors.white
             }
         })
-        console.log(constructedDiff)
+        console.log(colors.cyan + 'Diff: ' + constructedDiff)
         return returnValue
     }
 }
