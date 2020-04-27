@@ -100,20 +100,20 @@ export function gimmeDiff({ getState }: any): MiddlewareReturn {
             showHidden: false,
             depth: null
         })
-        const changed = diff.diffLines(beforeState, afterState)
+        const changed = diff.diffWordsWithSpace(beforeState, afterState)
+        let constructedDiff = ''
         changed.forEach(function (part) {
             let label: string
             let color: string
             if (part.added) {
-                label = colors.cyan + 'After: '
-                color = colors.green
-                console.log(label + color + part.value + colors.white)
+                constructedDiff += colors.green + part.value
             } else if (part.removed) {
-                label = colors.cyan + 'Before: '
-                color = colors.red
-                console.log(label + color + part.value + colors.white)
+                constructedDiff += colors.red + part.value
+            } else {
+                constructedDiff += colors.white + part.value + colors.white
             }
         })
+        console.log(constructedDiff)
         return returnValue
     }
 }
