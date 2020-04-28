@@ -43,7 +43,7 @@ import {customGimme} from 'gimme-state'
 
 const store = createStore(
   reducer,
-  applyMiddleware(customGimme({action:false,fullColors:false}))
+  applyMiddleware(customGimme({fullColors:true}))
 )
 ```
 
