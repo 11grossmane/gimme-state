@@ -18,14 +18,15 @@
     "author": "11grossmane",
     "license": "ISC",
     "dependencies": {
-        "@types/redux": "^3.6.0",
         "diff": "^4.0.2",
         "redux": "^4.0.5",
         "util": "^0.12.2"
     },
     "devDependencies": {
         "@types/diff": "^4.0.2",
-        "@types/node": "^13.13.2",
+        "@types/node": "^13.13.42",
+        "@types/redux": "^3.6.0",
+        "@types/typescript": "^2.0.0",
         "ts-node": "^8.9.0",
         "typescript": "^3.8.3"
     }

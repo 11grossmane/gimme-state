@@ -1,4 +1,4 @@
-import { Dispatch, AnyAction } from 'redux'
+import { Dispatch, AnyAction, Store } from 'redux'
 import * as diff from 'diff'
 import util from 'util'
 
@@ -11,13 +11,30 @@ const colors = {
     green: '\x1b[32m'
 }
 
-export function gimme({ getState }: any): MiddlewareReturn {
-    return (next: any) => (action: any) => {
+export function gimme({ getState }: Store): MiddlewareReturn {
+    return (next: any) => (action: AnyAction) => {
         let labels = {
             beforeDispatch: colors.magenta + 'Before Dispatch: ' + colors.white,
             action: colors.cyan + 'Action: ' + colors.white,
             afterDispatch: colors.green + 'After Dispatch: ' + colors.white
         }
+        global.console = (null as unknown) as Console
+        console.log(labels.beforeDispatch, getState())
+        console.log(labels.action, action)
+        const returnValue = next(action)
+        console.log(labels.afterDispatch, getState())
+        return returnValue
+    }
+}
+
+export function expoGimme({ getState }: Store): MiddlewareReturn {
+    return (next: any) => (action: AnyAction) => {
+        let labels = {
+            beforeDispatch: colors.magenta + 'Before Dispatch: ' + colors.white,
+            action: colors.cyan + 'Action: ' + colors.white,
+            afterDispatch: colors.green + 'After Dispatch: ' + colors.white
+        }
+        global.console = (null as unknown) as Console
         console.log(labels.beforeDispatch, getState())
         console.log(labels.action, action)
         const returnValue = next(action)
@@ -49,9 +66,7 @@ const parseOptions = (options: GimmeOptions): GimmeOptions => {
     return resultOptions
 }
 
-export function customGimme(
-    customOptions: GimmeOptions = {} as GimmeOptions
-): any {
+export function customGimme(customOptions: GimmeOptions = {} as GimmeOptions): any {
     return function logger({ getState }: any): MiddlewareReturn {
         return (next: any) => (action: any) => {
             let options = parseOptions(customOptions)
@@ -62,11 +77,9 @@ export function customGimme(
                       afterDispatch: colors.green + 'After Dispatch: '
                   }
                 : {
-                      beforeDispatch:
-                          colors.magenta + 'Before Dispatch: ' + colors.white,
+                      beforeDispatch: colors.magenta + 'Before Dispatch: ' + colors.white,
                       action: colors.cyan + 'Action: ' + colors.white,
-                      afterDispatch:
-                          colors.green + 'After Dispatch: ' + colors.white
+                      afterDispatch: colors.green + 'After Dispatch: ' + colors.white
                   }
             if (options.before) {
                 console.log(labels.beforeDispatch, getState())
