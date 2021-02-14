@@ -11,8 +11,8 @@ const colors = {
     green: '\x1b[32m'
 }
 
-export function gimme({ getState }: Store): MiddlewareReturn {
-    return (next: any) => (action: AnyAction) => {
+export function gimme({ getState }: any): MiddlewareReturn {
+    return (next: any) => (action: any) => {
         let labels = {
             beforeDispatch: colors.magenta + 'Before Dispatch: ' + colors.white,
             action: colors.cyan + 'Action: ' + colors.white,
@@ -27,8 +27,8 @@ export function gimme({ getState }: Store): MiddlewareReturn {
     }
 }
 
-export function expoGimme({ getState }: Store): MiddlewareReturn {
-    return (next: any) => (action: AnyAction) => {
+export function expoGimme({ getState }: any): MiddlewareReturn {
+    return (next: any) => (action: any) => {
         let labels = {
             beforeDispatch: colors.magenta + 'Before Dispatch: ' + colors.white,
             action: colors.cyan + 'Action: ' + colors.white,
