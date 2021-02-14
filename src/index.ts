@@ -1,7 +1,7 @@
 import { Dispatch, AnyAction, Store } from 'redux'
 import * as diff from 'diff'
 import util from 'util'
-import { controlExpoLogging } from './expo-helpers/logging'
+import { controlExpoLogging, disableCliLogging, enableCliLogging } from './expo-helpers/logging'
 
 type MiddlewareReturn = (next: Dispatch<AnyAction>) => (action: any) => any
 const colors = {
@@ -29,16 +29,18 @@ export function gimme({ getState }: any): MiddlewareReturn {
 
 export function expoGimme({ getState }: any): MiddlewareReturn {
     return (next: any) => (action: any) => {
+        disableCliLogging()
         let labels = {
             beforeDispatch: colors.magenta + 'Before Dispatch: ' + colors.white,
             action: colors.cyan + 'Action: ' + colors.white,
             afterDispatch: colors.green + 'After Dispatch: ' + colors.white
         }
-        controlExpoLogging()
+        //controlExpoLogging()
         console.log(labels.beforeDispatch, getState())
         console.log(labels.action, action)
         const returnValue = next(action)
         console.log(labels.afterDispatch, getState())
+        enableCliLogging()
         return returnValue
     }
 }

@@ -22,6 +22,22 @@ export const controlExpoLogging = (): void => {
     }
 }
 
+export const disableCliLogging = () => {
+    const isRemoteDebuggingEnabled = typeof atob !== 'undefined'
+    if (Logs && isRemoteDebuggingEnabled) {
+        return Logs.disableExpoCliLogging()
+    }
+    return () => {}
+}
+
+export const enableCliLogging = () => {
+    const isRemoteDebuggingEnabled = typeof atob !== 'undefined'
+    if (Logs && !isRemoteDebuggingEnabled) {
+        return Logs.enableExpoCliLogging()
+    }
+    return () => {}
+}
+
 // let _originalConsole: typeof console | null
 
 // export function enableExpoCliLogging(): void {
